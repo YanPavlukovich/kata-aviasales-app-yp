@@ -1,23 +1,13 @@
-import logo from './logo.svg';
 import s from './App.module.scss';
+import aviaLogo from '..//header-icon/header-icon.svg';
 
 function App() {
   return (
     <div className={s.App}>
-      <header className={s['App - header']}>
-        <img src={logo} className={s['App-logo']} alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className={s['App-link']}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className={s['app-header']}>
+        <img src={aviaLogo} alt="Логотип компании AviaSales" />
       </header>
+      <aside></aside>
     </div>
   );
 }
