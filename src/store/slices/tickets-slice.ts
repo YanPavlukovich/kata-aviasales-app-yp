@@ -5,11 +5,13 @@ import { TicketType } from "../../types/tickets";
 import { getAllTickets } from "../../API/get-tickets";
 
 type TicketsState = {
+	activeFilters: string[];
 	searchId: string,
 	tickets: TicketType[],
 }
 
 const initialState: TicketsState = {
+	activeFilters: [],
 	searchId: "",
 	tickets: [],
 };
