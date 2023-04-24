@@ -39,7 +39,7 @@ export const counterSlice = createSlice({
 			state.tickets = [...state.tickets, ...action.payload];
 		});
 	}
-})
+});
 
 export const { setSearchId } = counterSlice.actions;
 
