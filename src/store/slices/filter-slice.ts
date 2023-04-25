@@ -1,7 +1,7 @@
 import { UniqueId } from './../../types/core';
 import { createSlice } from "@reduxjs/toolkit";
 import { FilterType, FilterInitialType } from "../../types/filters"
-import { generateFilter } from '../../utils/add-filter';
+import { generateFilter } from '../../utils/generate-filter';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
