@@ -10,4 +10,4 @@ export const searchInitiated = async () => {
 	const response = await axios.get(url);
 
 	return response.data;
-}
+};
