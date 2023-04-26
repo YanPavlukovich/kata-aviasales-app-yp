@@ -5,7 +5,7 @@ import { TicketType } from '../types/tickets';
 
 export const getTickets = async (searchId: string) => {
 	try {
-		const url = `${BASE_URL}/tickets/${searchId}`;
+		const url = `${BASE_URL}/tickets?searchId=${searchId}`;
 		return await axios.get(url);
 	} catch (e) {
 		return false;
