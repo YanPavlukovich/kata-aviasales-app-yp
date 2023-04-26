@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-
+import s from './TicketHeader.module.scss';
 
 type Props = {
   price: number;
@@ -21,8 +21,8 @@ export const TicketHeader = (props: Props) => {
   const imgSrc = `https://pics.avs.io/99/36/${carrier}.png`;
 
   return (
-    <div {...otherProperties}>
-      <div>{priceString} Р</div>
+    <div className={s['ticket-header']} {...otherProperties}>
+      <div className={s['ticket-header__price']}>{priceString} Р</div>
       <img src={imgSrc} alt="" />
     </div>
   );

@@ -1,0 +1,24 @@
+.ticket-content {
+	display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+	&__column {
+		font-style: normal;
+  	font-weight: 600;
+		&--head {
+			font-size: 12px;
+			line-height: 18px;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+			color: #a0b0b9;
+		}
+		&--data {
+			font-size: 14px;
+    	line-height: 21px;
+    	color: $textColor;
+		}
+	}
+}

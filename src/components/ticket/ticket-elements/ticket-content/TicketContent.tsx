@@ -1,16 +1,17 @@
 import { useMemo } from 'react';
 import { TicketElementType } from '../../../../types/tickets';
+import s from './TicketContent.module.scss';
 
 type ColumnProps = {
   head: string;
-  content: string;
+  data: string;
 };
 
-const Column = ({ head, content }: ColumnProps) => {
+const Column = ({ head, data }: ColumnProps) => {
   return (
-    <div>
-      <div className={'head'}>{head}</div>
-      <div className={'content'}>{content}</div>
+    <div className={s['ticket - content__column']}>
+      <div className={s['ticket-content__column--head']}>{head}</div>
+      <div className={s['ticket-content__column--data']}>{data}</div>
     </div>
   );
 };
@@ -70,10 +71,10 @@ export const TicketContent = (props: Props) => {
     ])}`;
   }, stops);
   return (
-    <div>
-      <Column head={origin + ' - ' + destination} content={times.join(' - ')} />
-      <Column head={'В пути'} content={formatTimeToHoursAndMinutes(duration)} />
-      <Column head={stopsString} content={stops.join(', ')} />
+    <div className={s['ticket-content']}>
+      <Column head={origin + ' - ' + destination} data={times.join(' - ')} />
+      <Column head={'В пути'} data={formatTimeToHoursAndMinutes(duration)} />
+      <Column head={stopsString} data={stops.join(', ')} />
     </div>
   );
 };
