@@ -18,12 +18,12 @@ const getCorrectPrice = (price: number) => {
 export const TicketHeader = (props: Props) => {
   const { price, carrier, ...otherProperties } = props;
   const priceString = useMemo<string>(() => getCorrectPrice(price), [price]);
-  const imgSrc = `https://pics.avs.io/99/36/${carrier}.png`;
+  const imageSource = `https://pics.avs.io/99/36/${carrier}.png`;
 
   return (
     <div className={s['ticket-header']} {...otherProperties}>
       <div className={s['ticket-header__price']}>{priceString} Р</div>
-      <img src={imgSrc} alt="" />
+      <img src={imageSource} alt="Логотип авиакомпании" />
     </div>
   );
 };

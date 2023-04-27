@@ -13,7 +13,7 @@ const Ticket = (props: Props) => {
   });
   return (
     <Space className={s.ticket} direction="vertical" size={16}>
-      <Card extra={<TicketHeader price={price} carrier={carrier} />} style={{ width: 502 }}>
+      <Card title={<TicketHeader price={price} carrier={carrier} />} style={{ width: 502 }}>
         {segmentsElements}
       </Card>
     </Space>

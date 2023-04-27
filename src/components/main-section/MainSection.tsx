@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../hooks/hooks';
 import Ticket from '../ticket/Ticket';
 import { searchInitiated } from '../../API/search-initiate';
 import { fetchTickets, setSearchId } from '../../store/slices/tickets-slice';
+import s from './MainSection.module.scss';
 
 const MainSection = () => {
   const [loading, setLoading] = useState(true);
@@ -40,7 +41,7 @@ const MainSection = () => {
   }
 
   return (
-    <div>
+    <div className={s['main-section']}>
       <Radio.Group>
         <Radio.Button value="cheap">Самый дешевый</Radio.Button>
         <Radio.Button value="fast">Самый быстрый</Radio.Button>
