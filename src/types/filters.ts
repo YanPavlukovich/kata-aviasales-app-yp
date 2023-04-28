@@ -1,5 +1,5 @@
 import { FilterTypes } from "../utils/ticket-filter-criteria";
-import { UniqueId } from "./core"
+import { UniqueId } from "./core";
 
 export type FilterType = {
 	id: UniqueId;
