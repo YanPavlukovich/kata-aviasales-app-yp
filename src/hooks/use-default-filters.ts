@@ -33,10 +33,10 @@ export const useDefaultFilters: UseDefaultFilters = () => {
 	];
 
 	useEffect(() => {
-	defaultFilters.forEach((filter) => {
+		defaultFilters.forEach((filter) => {
 		dispatch(setFilter(filter));
-	}, []);
 	});
+	}, []);
 
 	return filters;
 };
