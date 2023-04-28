@@ -4,14 +4,14 @@ import s from './TicketContent.module.scss';
 
 type ColumnProps = {
   head: string;
-  data: string;
+  content: string;
 };
 
-const Column = ({ head, data }: ColumnProps) => {
+const Column = ({ head, content }: ColumnProps) => {
   return (
     <div className={s['ticket - content__column']}>
       <div className={s['ticket-content__column--head']}>{head}</div>
-      <div className={s['ticket-content__column--data']}>{data}</div>
+      <div className={s['ticket-content__column--data']}>{content}</div>
     </div>
   );
 };
@@ -70,11 +70,12 @@ export const TicketContent = (props: Props) => {
       'пересадок',
     ])}`;
   }, stops);
+
   return (
     <div className={s['ticket-content']}>
-      <Column head={origin + ' - ' + destination} data={times.join(' - ')} />
-      <Column head={'В пути'} data={formatTimeToHoursAndMinutes(duration)} />
-      <Column head={stopsString} data={stops.join(', ')} />
+      <Column head={origin + ' - ' + destination} content={times.join(' - ')} />
+      <Column head={'В пути'} content={formatTimeToHoursAndMinutes(duration)} />
+      <Column head={stopsString} content={stops.join(', ')} />
     </div>
   );
 };
