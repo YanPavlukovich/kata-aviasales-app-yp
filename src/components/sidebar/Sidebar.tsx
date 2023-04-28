@@ -1,20 +1,21 @@
+import { useEffect, useState } from 'react';
 import { Layout } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { useAppDispatch } from '../../hooks/hooks';
 import { nanoid } from '@reduxjs/toolkit';
 import { changeAllFilters, changeFilter } from '../../store/slices/filter-slice';
-import { useEffect, useState } from 'react';
 import { useDefaultFilters } from '../../hooks/use-default-filters';
 import { FilterCheckbox } from '../filter-checkbox/FilterCheckbox';
+import s from './Sidebar.module.scss';
 
 export const Sidebar = () => {
   const dispatch = useAppDispatch();
-  const [allFilterActive, setAllFilterStatus] = useState<boolean>(false);
   const filters = useDefaultFilters();
+  const [allFilterActive, setAllFiltersStatus] = useState<boolean>(false);
 
   useEffect(() => {
     const allActive = filters.every((filter) => filter.active);
-    setAllFilterStatus(allActive);
+    setAllFiltersStatus(allActive);
   }, [filters]);
 
   const filterToggle = (id: ReturnType<typeof nanoid>) => {
@@ -37,7 +38,7 @@ export const Sidebar = () => {
 
   return (
     <Layout>
-      <Sider theme="light" style={{ width: 232, height: 252 }}>
+      <Sider className={s['filters-container']} theme="light">
         <h3 className={'filters-title'}>Количество пересадок</h3>
         <FilterCheckbox
           label={'Все'}
