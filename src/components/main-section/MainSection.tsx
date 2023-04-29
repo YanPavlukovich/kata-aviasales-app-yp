@@ -38,11 +38,7 @@ const MainSection = () => {
     return <Loader />;
   }
 
-  if (!selectedTickets.length) {
-    return <div className={s.message}>Мы ничего не нашли</div>;
-  }
-
-  return (
+  return selectedTickets.length ? (
     <div className={s['main-section']}>
       <Space direction="vertical" wrap>
         <SortTabs />
@@ -56,6 +52,8 @@ const MainSection = () => {
         </Button>
       </Space>
     </div>
+  ) : (
+    <div className={s.message}>Мы ничего не нашли</div>
   );
 };
 

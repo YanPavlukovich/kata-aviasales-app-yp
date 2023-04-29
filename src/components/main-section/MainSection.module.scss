@@ -13,11 +13,6 @@
 }
 
 .message {
-	position: fixed;
-	top: 30%;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	text-align: center;
+	flex-grow: 3;
 	font-weight: 700;
 }
