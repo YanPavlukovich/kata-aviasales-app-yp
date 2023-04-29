@@ -39,7 +39,7 @@ export const Sidebar = () => {
   return (
     <Layout>
       <Sider className={s['filters-container']} theme="light">
-        <h3 className={'filters-title'}>Количество пересадок</h3>
+        <h3 className={s['filters-title']}>Количество пересадок</h3>
         <FilterCheckbox
           label={'Все'}
           active={allFilterActive}

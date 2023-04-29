@@ -1,5 +1,6 @@
 import { Checkbox } from 'antd';
 import { UniqueId } from '../../types/core';
+import s from './FilterCheckbox.module.scss';
 
 type Props = {
   id: UniqueId;
@@ -11,7 +12,7 @@ type Props = {
 export const FilterCheckbox = (props: Props) => {
   const { id, label, active, onFilterToggle } = props;
   return (
-    <Checkbox checked={active} onChange={() => onFilterToggle(id)}>
+    <Checkbox className={s.filter} checked={active} onChange={() => onFilterToggle(id)}>
       {label}
     </Checkbox>
   );

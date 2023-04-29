@@ -1,16 +1,19 @@
+.filters-container {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 8px 0;
+  width: 232px;
+	height: 270px;
+}
+
 .filters-title {
 	font-style: normal;
 	font-weight: 600;
-	font-size: 12px;
+	font-size: 11px;
 	line-height: 12px;
 	letter-spacing: 0.5px;
 	text-transform: uppercase;
 
 	margin: 10px 0;
 	padding: 0 20px;
-}
-
-.filters-container {
-	width: 232px;
-	height: 252px;
 }
