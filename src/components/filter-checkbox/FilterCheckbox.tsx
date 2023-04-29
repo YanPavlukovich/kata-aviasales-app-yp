@@ -1,12 +1,13 @@
 import { Checkbox } from 'antd';
-import { UniqueId } from '../../types/core';
+
 import s from './FilterCheckbox.module.scss';
+import { FilterTypes } from '../../store/slices/filter-slice';
 
 type Props = {
-  id: UniqueId;
+  id: FilterTypes;
   label: string;
   active: boolean;
-  onFilterToggle: (value: string) => void;
+  onFilterToggle: (value: FilterTypes) => void;
 };
 
 export const FilterCheckbox = (props: Props) => {
