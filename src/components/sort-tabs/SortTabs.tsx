@@ -28,7 +28,7 @@ export const SortTabs = () => {
     );
   });
   return (
-    <Radio.Group value={activeSort} defaultValue="cheap" size="large">
+    <Radio.Group value={activeSort} defaultValue="cheap" size="large" style={{ display: 'flex' }}>
       {tabsElements}
     </Radio.Group>
   );

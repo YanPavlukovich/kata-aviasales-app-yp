@@ -7,4 +7,7 @@
   cursor: pointer;
 	margin-inline-start: 8px;
 	font-size: 14px;
+	&:hover {
+		background-color: #F1FCFF;
+	}
 }
