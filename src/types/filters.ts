@@ -1,16 +1,8 @@
-import { FilterTypes } from "../utils/ticket-filter-criteria";
-import { UniqueId } from "./core";
-
-export type FilterType = {
-	id: UniqueId;
-	label: string;
-	filterType: FilterTypes;
-	filterPayload: string | number | boolean;
-	active: boolean;
-};
+import { FilterTypes } from "../store/slices/filter-slice";
 
 export type FilterInitialType = {
 	label: string;
 	filterType: FilterTypes;
 	filterPayload: string | number | boolean;
+	active: boolean;
 }
