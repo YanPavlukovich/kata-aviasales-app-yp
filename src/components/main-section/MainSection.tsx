@@ -7,6 +7,7 @@ import { searchInitiated } from '../../API/search-initiate';
 import { fetchTickets, setSearchId } from '../../store/slices/tickets-slice';
 import s from './MainSection.module.scss';
 import { SortTabs } from '../sort-tabs/SortTabs';
+import { Loader } from '../loader/Loader';
 
 const MainSection = () => {
   const [loading, setLoading] = useState(true);
@@ -34,7 +35,7 @@ const MainSection = () => {
   }, [selectedTickets]);
 
   if (loading) {
-    return <div>Загружаем билеты...</div>;
+    return <Loader />;
   }
 
   if (!selectedTickets.length) {
