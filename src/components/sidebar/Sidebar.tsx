@@ -1,38 +1,37 @@
-import { useEffect, useState } from 'react';
 import { Layout } from 'antd';
 import Sider from 'antd/es/layout/Sider';
-import { useAppDispatch } from '../../hooks/hooks';
-import { nanoid } from '@reduxjs/toolkit';
-import { changeAllFilters, changeFilter } from '../../store/slices/filter-slice';
-import { useDefaultFilters } from '../../hooks/use-default-filters';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+
+import {
+  setFilter,
+  selectFilters,
+  setAllActive,
+  FilterTypes,
+} from '../../store/slices/filter-slice';
+import { useActualFilters } from '../../hooks/use-actual-filters';
 import { FilterCheckbox } from '../filter-checkbox/FilterCheckbox';
 import s from './Sidebar.module.scss';
 
 export const Sidebar = () => {
   const dispatch = useAppDispatch();
-  const filters = useDefaultFilters();
-  const [allFilterActive, setAllFiltersStatus] = useState<boolean>(false);
+  const checkboxes = useActualFilters();
+  const { isAllActive } = useAppSelector(selectFilters);
 
-  useEffect(() => {
-    const allActive = filters.every((filter) => filter.active);
-    setAllFiltersStatus(allActive);
-  }, [filters]);
-
-  const filterToggle = (id: ReturnType<typeof nanoid>) => {
-    dispatch(changeFilter(id));
+  const filterToggle = (id: FilterTypes) => {
+    dispatch(setFilter(id));
   };
 
   const toggleAllFilters = () => {
-    dispatch(changeAllFilters(!allFilterActive));
+    dispatch(setAllActive());
   };
 
-  const filtersElements = filters.map((el) => (
+  const filtersElements = checkboxes.map((el) => (
     <FilterCheckbox
-      key={el.id}
+      key={el.filterType}
       label={el.label}
       active={el.active}
       onFilterToggle={filterToggle}
-      id={el.id}
+      id={el.filterType}
     />
   ));
 
@@ -42,9 +41,9 @@ export const Sidebar = () => {
         <h3 className={s['filters-title']}>Количество пересадок</h3>
         <FilterCheckbox
           label={'Все'}
-          active={allFilterActive}
+          active={isAllActive}
           onFilterToggle={toggleAllFilters}
-          id={nanoid()}
+          id="isAllActive"
         />
         {filtersElements}
       </Sider>
