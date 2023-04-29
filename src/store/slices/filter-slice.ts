@@ -1,41 +1,52 @@
-import { UniqueId } from './../../types/core';
 import { createSlice } from "@reduxjs/toolkit";
-import { FilterType, FilterInitialType } from "../../types/filters";
-import { generateFilter } from '../../utils/generate-filter';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 type FilterState = {
-	filters: FilterType[];
+	isAllActive: boolean,
+	without: boolean,
+	oneTransfer: boolean,
+	twoTransfer: boolean,
+	threeTransfer: boolean,
 }
 
+export type FilterTypes = 'isAllActive' | 'without' | 'oneTransfer' | 'twoTransfer' | 'threeTransfer'
+
 const initialState: FilterState = {
-	filters: [],
+	isAllActive: true,
+	without: true,
+	oneTransfer: true,
+	twoTransfer: true,
+	threeTransfer: true,
 };
 
 export const filterSlice = createSlice({
 	name: 'filters',
 	initialState,
 	reducers: {
-		setFilter: (state, action: PayloadAction<FilterInitialType>) => {
-			state.filters.length !== 4 ? state.filters.push(generateFilter(action.payload)) : null;
+		setAllActive: (state) => {
+			const newState = {...state};
+			newState.isAllActive= !state.isAllActive;
+			newState.without= !state.isAllActive;
+			newState.oneTransfer= !state.isAllActive;
+			newState.twoTransfer= !state.isAllActive;
+			newState.threeTransfer= !state.isAllActive;
 
+			return newState;
 		},
-		changeFilter: (state, action: PayloadAction<UniqueId>) => {
-			state.filters = state.filters.map((filter) => ({
-				...filter,
-				active: action.payload === filter.id ? !filter.active : filter.active,
-			}));
-		},
-		changeAllFilters: (state, action) => {
-      state.filters = state.filters.map((filter) => ({
-        ...filter,
-        active: action.payload,
-      }));
-		},
+		setFilter: (state, {payload}: PayloadAction<FilterTypes>) => {
+			const newState = {...state};
+			newState[payload] = !state[payload];
+			if (newState.without && newState.oneTransfer && newState.twoTransfer &&newState.threeTransfer) {
+				newState.isAllActive = true;
+			} else {
+				newState.isAllActive = false;
+			}
+			return newState;
+		}
 	},
 });
 
-export const {setFilter, changeFilter, changeAllFilters} = filterSlice.actions;
-export const selectFilters = (state: RootState) => state.filters.filters;
+export const {setAllActive, setFilter} = filterSlice.actions;
+export const selectFilters = (state: RootState) => state.filters;
 export default filterSlice.reducer;
