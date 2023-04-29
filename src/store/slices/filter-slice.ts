@@ -19,6 +19,7 @@ export const filterSlice = createSlice({
 	reducers: {
 		setFilter: (state, action: PayloadAction<FilterInitialType>) => {
 			state.filters.length !== 4 ? state.filters.push(generateFilter(action.payload)) : null;
+
 		},
 		changeFilter: (state, action: PayloadAction<UniqueId>) => {
 			state.filters = state.filters.map((filter) => ({
