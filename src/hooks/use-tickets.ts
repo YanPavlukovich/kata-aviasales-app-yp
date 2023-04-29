@@ -5,17 +5,17 @@ import { selectTickets } from "../store/slices/tickets-slice";
 import { useAppSelector } from "./hooks";
 import { TicketType } from "../types/tickets";
 import { sortFunctions } from "../utils/ticket-sort-criteria";
-import { filterFunctions } from "../utils/ticket-filter-criteria";
+
 
 export const useTickets = () => {
 	const tickets = useAppSelector(selectTickets);
-	const filters = useAppSelector(selectFilters);
+	const {isAllActive, without, oneTransfer, twoTransfer,threeTransfer} = useAppSelector(selectFilters);
 	const activeSort = useAppSelector(selectSortType);
 
 	const [selectedTickets, setSelectedFilters] = useState<TicketType[]>([]);
 
 	useEffect(() => {
-		const activeFilters = filters.filter((f) => f.active);
+
 
 		const sorted = [...tickets].sort((a,b) => {
 			const callback = sortFunctions[activeSort];
@@ -23,17 +23,18 @@ export const useTickets = () => {
 		});
 
 		const filtered = sorted.filter((ticket) => {
-			return !activeFilters.length
+			return isAllActive
 				? true
-				: activeFilters.every((filter) => {
-					const {filterType, filterPayload} = filter;
-					const filterCallback = filterFunctions[filterType];
-
-					return filterCallback(ticket, filterPayload);
+				: [without, oneTransfer, twoTransfer,threeTransfer]
+				.filter((transfer, index) => {
+					if(!transfer) return false;
+					return ticket.segments
+						.some((segment) => segment.stops.length === index);}).length;
 				});
-		});
+
+
 		setSelectedFilters(filtered);
-	}, [tickets,activeSort,filters]);
+	}, [tickets,activeSort,isAllActive, without, oneTransfer, twoTransfer,threeTransfer]);
 
 	return selectedTickets;
 };
