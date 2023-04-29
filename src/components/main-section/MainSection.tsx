@@ -39,7 +39,7 @@ const MainSection = () => {
   }
 
   if (!selectedTickets.length) {
-    return <div>Мы ничего не нашли</div>;
+    return <div className={s.message}>Мы ничего не нашли</div>;
   }
 
   return (
