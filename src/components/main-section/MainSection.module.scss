@@ -1,8 +1,10 @@
 .main-section {
+
 	display: flex;
 	flex-direction: column;
 	width: fit-content;
 	text-transform: uppercase;
+	box-sizing: border-box;
 	&__button {
 		width: 502px;
 
@@ -15,4 +17,5 @@
 .message {
 	flex-grow: 3;
 	font-weight: 700;
-}
+	height: 700px;
+};
